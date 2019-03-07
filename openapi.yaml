@@ -8,7 +8,7 @@ info:
   termsOfService: ''
   contact:
     name: Lining Automaatio
-    url: 'http://www.lining.fi/automaatio'
+    url: 'https://www.lining.fi/projektiliiketoiminta/automaatio'
     email: aqvahelp@lining.fi
 servers:
   - url: 'https://api.aqvarex.fi/api/v1'
