@@ -9,7 +9,7 @@ info:
   contact:
     name: Lining Automaatio
     url: 'http://www.lining.fi/automaatio'
-    email: esa.vaara@lining.fi
+    email: aqvahelp@lining.fi
 servers:
   - url: 'https://api.aqvarex.fi/api/v1'
     description: Production server
