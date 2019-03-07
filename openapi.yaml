@@ -13,8 +13,8 @@ info:
 servers:
   - url: 'https://api.aqvarex.fi/api/v1'
     description: Production server
-  - url: 'http://212.149.126.67/api/v1'
-    description: Development server
+  # - url: 'http://212.149.126.67/api/v1'
+  #   description: Development server
 tags:
   - name: stations
     description: Ala-asemien perustiedot sekä käytettävissä olevat historiasarakkeet
@@ -152,15 +152,15 @@ paths:
           required: true
           schema:
             type: string
-            example: '2018-07-23T00:00:00.000Z'
-          description: 'Haettavan ajanjakson alkuaika. Muotoa ''YYYY-MM-DD HH:mm.ss''.'
+            example: '2018-07-23T12:00:00'
+          description: 'Haettavan ajanjakson alkuaika. Muotoa ''YYYY-MM-DDTHH:mm.ss''.'
         - name: end
           in: query
           required: false
           schema:
             type: string
-            example: '2018-08-01T00:00:00.000Z'
-          description: 'Haettavan ajanjakson loppuaika. Muotoa ''YYYY-MM-DD HH:mm.ss''.'
+            example: '2018-08-01T12:00:00'
+          description: 'Haettavan ajanjakson loppuaika. Muotoa ''YYYY-MM-DDTHH:mm.ss''.'
       responses:
         '200':
           description: successful operation
@@ -214,15 +214,15 @@ paths:
           required: true
           schema:
             type: string
-            example: '2018-07-23T00:00:00.000Z'
-          description: 'Haettavan ajanjakson alkuaika. Muotoa ''YYYY-MM-DD HH:mm.ss''.'
+            example: '2018-07-23T12:00:00'
+          description: 'Haettavan ajanjakson alkuaika. Muotoa ''YYYY-MM-DDTHH:mm.ss''.'
         - name: end
           in: query
           required: false
           schema:
             type: string
-            example: '2018-08-01T00:00:00.000Z'
-          description: 'Haettavan ajanjakson loppuaika. Muotoa ''YYYY-MM-DD HH:mm.ss''.'
+            example: '2018-08-01T00:00:00'
+          description: 'Haettavan ajanjakson loppuaika. Muotoa ''YYYY-MM-DDTHH:mm.ss''.'
       responses:
         '200':
           description: successful operation
@@ -273,15 +273,15 @@ paths:
           required: true
           schema:
             type: string
-            example: '2018-07-23T00:00:00.000Z'
-          description: 'Haettavan ajanjakson alkuaika. Muotoa ''YYYY-MM-DD HH:mm.ss''.'
+            example: '2018-07-23T12:00:00'
+          description: 'Haettavan ajanjakson alkuaika. Muotoa ''YYYY-MM-DDTHH:mm.ss''.'
         - name: end
           in: query
           required: false
           schema:
             type: string
-            example: '2018-08-01T00:00:00.000Z'
-          description: 'Haettavan ajanjakson loppuaika. Muotoa ''YYYY-MM-DD HH:mm.ss''.'
+            example: '2018-08-01T12:00:00'
+          description: 'Haettavan ajanjakson loppuaika. Muotoa ''YYYY-MM-DDTHH:mm.ss''.'
       responses:
         '200':
           description: successful operation
@@ -347,15 +347,15 @@ paths:
           required: true
           schema:
             type: string
-            example: '2018-07-23T00:00:00.000Z'
-          description: 'Haettavan ajanjakson alkuaika. Muotoa ''YYYY-MM-DD HH:mm.ss''.'
+            example: '2018-07-23T12:00:00'
+          description: 'Haettavan ajanjakson alkuaika. Muotoa ''YYYY-MM-DDTHH:mm.ss''.'
         - name: end
           in: query
           required: false
           schema:
             type: string
-            example: '2018-08-01T00:00:00.000Z'
-          description: 'Haettavan ajanjakson loppuaika. Muotoa ''YYYY-MM-DD HH:mm.ss''.'
+            example: '2018-08-01T12:00:00'
+          description: 'Haettavan ajanjakson loppuaika. Muotoa ''YYYY-MM-DDTHH:mm.ss''.'
       responses:
         '200':
           description: successful operation
@@ -374,7 +374,7 @@ definitions:
     properties:
       time:
         type: string
-        example: '2018-06-30 21:00:00'
+        example: '2018-06-30T21:00:00'
       value:
         type: numeric
         example: 64
@@ -424,6 +424,9 @@ definitions:
       name:
         type: string
         example: '059, Ristinummi SVP'
+      connection:
+        type: string
+        example: '2019-03-07T12:49:32'
       description:
         type: string
         example: Sadevesipumppaamo
@@ -445,6 +448,9 @@ definitions:
       name:
         type: string
         example: '059, Ristinummi SVP'
+      connection:
+        type: string
+        example: '2019-03-07T12:49:32'
       description:
         type: string
         example: Sadevesipumppaamo
@@ -453,7 +459,7 @@ definitions:
         example: SVP
       location:
         $ref: '#/definitions/Location'
-      columns:
+      cols:
         type: array
         items:
           $ref: '#/definitions/HistoryColumn'
