@@ -153,14 +153,14 @@ paths:
           schema:
             type: string
             example: '2018-07-23T12:00:00'
-          description: 'Haettavan ajanjakson alkuaika. Muotoa ''YYYY-MM-DDTHH:mm.ss''.'
+          description: 'Haettavan ajanjakson alkuaika. Muotoa ''YYYY-MM-DDTHH:mm:ss''.'
         - name: end
           in: query
           required: false
           schema:
             type: string
             example: '2018-08-01T12:00:00'
-          description: 'Haettavan ajanjakson loppuaika. Muotoa ''YYYY-MM-DDTHH:mm.ss''.'
+          description: 'Haettavan ajanjakson loppuaika. Muotoa ''YYYY-MM-DDTHH:mm:ss''.'
       responses:
         '200':
           description: successful operation
