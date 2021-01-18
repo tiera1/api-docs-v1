@@ -424,6 +424,10 @@ definitions:
       name:
         type: string
         example: '059, Ristinummi SVP'
+      schema:
+        type: array
+        items:
+          $ref: '#/definitions/Columns'
       connection:
         type: string
         example: '2019-03-07T12:49:32'
