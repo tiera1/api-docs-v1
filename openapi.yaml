@@ -440,10 +440,14 @@ definitions:
         properties:
           in:
             type: array
-            example: '30, 32'
+            items:
+              type: integer
+              example: '30, 32'
           out:
             type: array
-            example: '56'
+            items:
+              type: integer
+              example: '56'
       connection:
         type: string
         example: '2019-03-07T12:49:32'
