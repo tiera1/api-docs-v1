@@ -399,9 +399,11 @@ definitions:
     properties:
       in:
         type: array
+        items: type integer
         example: '29, 30'
       out:
         type: array
+        items: type integer
         example: '32'
   Columns:
     type: object
@@ -434,9 +436,14 @@ definitions:
         type: string
         example: '059, Ristinummi SVP'
       schema:
-        type: array
-        items:
-          $ref: '#/definitions/Schema'
+        type: object
+        properties:
+          in:
+            type: array
+            items: '30, 32'
+          out:
+            type: array
+            items: '56'
       connection:
         type: string
         example: '2019-03-07T12:49:32'
