@@ -442,12 +442,12 @@ definitions:
             type: array
             items:
               type: integer
-            example: 30, 32
+              example: 32
           out:
             type: array
             items:
               type: integer
-            example: 56
+              example: 56
       connection:
         type: string
         example: '2019-03-07T12:49:32'
