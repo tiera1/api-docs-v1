@@ -442,7 +442,7 @@ definitions:
             type: array
             items:
               type: integer
-              example: 32
+              example: 32, 33
           out:
             type: array
             items:
