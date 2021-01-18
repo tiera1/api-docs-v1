@@ -7,8 +7,8 @@ info:
     AqvaRex-kaukovalvontajärjestelmästä.
   termsOfService: ''
   contact:
-    name: Lining Automaatio
-    url: 'https://www.lining.fi/mittaus-ja-automaatio'
+    name: Lining Digi- ja Automaatio
+    url: 'https://www.lining.fi/yhteystiedot/henkilosto/digi-ja-automaatio'
     email: aqvahelp@lining.fi
 servers:
   - url: 'https://api.aqvarex.fi/api/v1'
