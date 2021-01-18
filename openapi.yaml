@@ -394,6 +394,15 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/HistoryValue'
+  Schema:
+    type: object
+    properties:
+      in:
+        type: array
+        example: '29, 30'
+      out:
+        type: array
+        example: '32'
   Columns:
     type: object
     properties:
@@ -427,7 +436,7 @@ definitions:
       schema:
         type: array
         items:
-          $ref: '#/definitions/Columns'
+          $ref: '#/definitions/Schema'
       connection:
         type: string
         example: '2019-03-07T12:49:32'
