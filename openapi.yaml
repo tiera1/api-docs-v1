@@ -2,8 +2,7 @@ openapi: 3.0.0
 info:
   version: 1.0.0.
   title: AqvaRex REST-API
-  description: >-
-    Rajapinta ala-asemien historiatietojen hakemiseen AqvaRex-kaukovalvontajärjestelmästä.  
+  description: Rajapinta ala-asemien historiatietojen hakemiseen AqvaRex-kaukovalvontajärjestelmästä.  
   termsOfService: ''
   contact:
     name: Lining Digi- ja Automaatio
