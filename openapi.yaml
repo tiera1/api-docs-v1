@@ -472,6 +472,19 @@ definitions:
       name:
         type: string
         example: '059, Ristinummi SVP'
+      schema:
+        type: object
+        properties:
+          in:
+            type: array
+            items:
+              type: integer
+              example: 32
+          out:
+            type: array
+            items:
+              type: integer
+              example: 56
       connection:
         type: string
         example: '2019-03-07T12:49:32'
