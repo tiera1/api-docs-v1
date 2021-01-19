@@ -7,8 +7,8 @@ info:
     AqvaRex-kaukovalvontajärjestelmästä.
     >-
     **19.1.2020**  
-    <p>Lisätty ala-aseman perustietoihin "schema"-objekti, joka sisältää tiedot ala-asemien suhteista toisiinsa.
-    "in"-taulukossa on lista niiden ala-asemien id:stä, jotka pumppaavat ala-asemaan.
+    <p>Lisätty ala-aseman perustietoihin "schema"-objekti, joka sisältää tiedot ala-asemien suhteista toisiinsa.<br />
+    "in"-taulukossa on lista niiden ala-asemien id:stä, jotka pumppaavat ala-asemaan.<br />
     "out"-taulukossa on lista niiden ala-asemien id:stä, joihin ala-asema pumppaa.</p>
   termsOfService: ''
   contact:
