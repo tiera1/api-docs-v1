@@ -5,7 +5,7 @@ info:
   description: >-
     Rajapinta ala-asemien historiatietojen hakemiseen
     AqvaRex-kaukovalvontajärjestelmästä.
-      \
+    >-
     **19.1.2020**  
     <p>Lisätty ala-aseman perustietoihin "schema"-objekti, joka sisältää tiedot ala-asemien suhteista toisiinsa.
     "in"-taulukossa on lista niiden ala-asemien id:stä, jotka pumppaavat ala-asemaan.
