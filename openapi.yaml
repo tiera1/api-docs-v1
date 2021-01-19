@@ -4,8 +4,8 @@ info:
   title: AqvaRex REST-API
   description: >-
     Rajapinta ala-asemien historiatietojen hakemiseen
-    AqvaRex-kaukovalvontajärjestelmästä.  
-    <b>19.1.2020</b>
+    AqvaRex-kaukovalvontajärjestelmästä.
+    19.1.2020
     Lisätty ala-aseman perustietoihin "schema"-objekti, joka sisältää tiedot ala-asemien suhteista toisiinsa.
     "in"-taulukossa on lista niiden ala-asemien id:stä, jotka pumppaavat ala-asemaan.
     "out"-taulukossa on lista niiden ala-asemien id:stä, joihin ala-asema pumppaa.
