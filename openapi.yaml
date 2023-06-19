@@ -1,1 +1,501 @@
-
+openapi: 3.0.0
+info:
+  version: 1.0.0.
+  title: AqvaRex REST-API
+  description: >-
+    Rajapinta ala-asemien historiatietojen hakemiseen AqvaRex-kaukovalvontajärjestelmästä.  
+  termsOfService: ''
+  contact:
+    name: Lining Digi- ja Automaatio
+    url: 'https://www.lining.fi/yhteystiedot/henkilosto/digi-ja-automaatio'
+    email: aqvahelp@lining.fi
+servers:
+  - url: 'https://api.aqvarex.fi/api/v1'
+    description: Production server
+  # - url: 'http://212.149.126.67/api/v1'
+  #   description: Development server
+tags:
+  - name: stations
+    description: Ala-asemien perustiedot sekä käytettävissä olevat historiasarakkeet
+  - name: history
+    description: Ala-asemien historiatiedot
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+paths:
+  /stations:
+    get:
+      tags:
+        - stations
+      description: >-
+        Lista kaikista järjestelmän aktiivisista ala-asemista perustietoineen
+        sekä käytettävissä olevista historiasakkeista
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/definitions/Station'
+        '401':
+          description: Unauthorized
+  '/stations/{stationId}':
+    get:
+      tags:
+        - stations
+      description: >-
+        Lista ala-asemista asema-id:n perusteella perustietoineen sekä
+        käytettävissä olevista historiasakkeista
+      parameters:
+        - name: stationId
+          description: >-
+            Haettavien ala-asemien asema-id:t pilkulla erotettuina. Esim.
+            15,23,56
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: array
+            items:
+              type: integer
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/definitions/Station'
+  '/stations/types/{type}':
+    get:
+      tags:
+        - stations
+      description: >-
+        Lista ala-asemista asematyypin perusteella perustietoineen sekä
+        käytettävissä olevista historiasakkeista.
+      parameters:
+        - name: type
+          description: >-
+            Haettavien ala-asemien tyyppitunnukset pilkulla erotettuina. Esim.
+            JVP,SVP,PKA.
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - AL
+                - AVS
+                - HY
+                - JP
+                - JVP
+                - MA
+                - PKA
+                - PP
+                - RVO
+                - SLV
+                - SVP
+                - VKL
+                - VO
+                - VT
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/definitions/Station'
+  '/stations/{stationId}/history':
+    get:
+      tags:
+        - history
+      description: >-
+        Lista ala-asemien perustiedoista sekä historiatiedot ala-asemien
+        kaikista histroriasarakkeista asema-id:n perusteella.
+      parameters:
+        - name: stationId
+          description: >-
+            Haettavien ala-asemien asema-id:t pilkulla erotettuina. Esim.
+            15,23,56.
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: array
+            items:
+              type: integer
+            minItems: 1
+        - name: start
+          in: query
+          required: true
+          schema:
+            type: string
+            example: '2018-07-23T12:00:00'
+          description: 'Haettavan ajanjakson alkuaika. Muotoa ''YYYY-MM-DDTHH:mm:ss''.'
+        - name: end
+          in: query
+          required: false
+          schema:
+            type: string
+            example: '2018-08-01T12:00:00'
+          description: 'Haettavan ajanjakson loppuaika. Muotoa ''YYYY-MM-DDTHH:mm:ss''.'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/definitions/History'
+  '/stations/types/{type}/history':
+    get:
+      tags:
+        - history
+      description: >-
+        Lista ala-asemien perustiedoista sekä historiatiedot ala-asemien
+        kaikista historiasarakkeista asematyypin perusteella.
+      parameters:
+        - name: type
+          description: >-
+            Haettavien ala-asemien tyyppitunnukset pilkulla erotettuina. Esim.
+            JVP,SVP,PKA.
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - AL
+                - AVS
+                - HY
+                - JP
+                - JVP
+                - MA
+                - PKA
+                - PP
+                - RVO
+                - SLV
+                - SVP
+                - VKL
+                - VO
+                - VT
+            minItems: 1
+        - name: start
+          in: query
+          required: true
+          schema:
+            type: string
+            example: '2018-07-23T12:00:00'
+          description: 'Haettavan ajanjakson alkuaika. Muotoa ''YYYY-MM-DDTHH:mm:ss''.'
+        - name: end
+          in: query
+          required: false
+          schema:
+            type: string
+            example: '2018-08-01T00:00:00'
+          description: 'Haettavan ajanjakson loppuaika. Muotoa ''YYYY-MM-DDTHH:mm:ss''.'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/definitions/History'
+  '/stations/{stationId}/history/{columnName}':
+    get:
+      tags:
+        - history
+      description: >-
+        Lista ala-asemien perustiedoista sekä historiatiedot asema-id:n ja
+        historiasarakkeen nimen perusteella.
+      parameters:
+        - name: stationId
+          description: >-
+            Haettavien ala-asemien asema-id:t pilkulla erotettuina. Esim.
+            15,23,56.
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: array
+            items:
+              type: integer
+        - name: columnName
+          description: >-
+            Haettavien historiasakkeiden nimet pilkulla erotettuina. Esim.
+            P1AIKA,P2AIKA,VESI1.
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: array
+            items:
+              type: integer
+            minItems: 1
+        - name: start
+          in: query
+          required: true
+          schema:
+            type: string
+            example: '2018-07-23T12:00:00'
+          description: 'Haettavan ajanjakson alkuaika. Muotoa ''YYYY-MM-DDTHH:mm:ss''.'
+        - name: end
+          in: query
+          required: false
+          schema:
+            type: string
+            example: '2018-08-01T12:00:00'
+          description: 'Haettavan ajanjakson loppuaika. Muotoa ''YYYY-MM-DDTHH:mm:ss''.'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/definitions/History'
+  '/stations/types/{type}/history/{columnName}':
+    get:
+      tags:
+        - history
+      description: >-
+        Lista ala-asemien perustiedoista sekä historiatiedot tyyppitunnuksen ja
+        historiasarakkeen nimen perusteella.
+      parameters:
+        - name: type
+          description: >-
+            Haettavien ala-asemien tyyppitunnukset pilkulla erotettuina. Esim.
+            JVP,SVP,PKA.
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - AL
+                - AVS
+                - HY
+                - JP
+                - JVP
+                - MA
+                - PKA
+                - PP
+                - RVO
+                - SLV
+                - SVP
+                - VKL
+                - VO
+                - VT
+        - name: columnName
+          description: >-
+            Haettavien historiasakkeiden nimet pilkulla erotettuina. Esim.
+            P1AIKA,P2AIKA,VESI1.
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: array
+            items:
+              type: integer
+            minItems: 1
+        - name: start
+          in: query
+          required: true
+          schema:
+            type: string
+            example: '2018-07-23T12:00:00'
+          description: 'Haettavan ajanjakson alkuaika. Muotoa ''YYYY-MM-DDTHH:mm:ss''.'
+        - name: end
+          in: query
+          required: false
+          schema:
+            type: string
+            example: '2018-08-01T12:00:00'
+          description: 'Haettavan ajanjakson loppuaika. Muotoa ''YYYY-MM-DDTHH:mm:ss''.'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/definitions/History'
+definitions:
+  HistoryValue:
+    type: object
+    properties:
+      time:
+        type: string
+        example: '2018-06-30T21:00:00'
+      value:
+        type: numeric
+        example: 64
+  HistoryColumn:
+    type: object
+    properties:
+      name:
+        type: string
+        example: PINTAMAX
+      description:
+        type: string
+        example: Pinta max.
+      unit:
+        type: string
+        example: cm
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/HistoryValue'
+  #Schema:
+  #  type: object
+  #  properties:
+  #    in:
+  #      type: array
+  #      items: type integer
+  #      example: '29, 30'
+  #    out:
+  #      type: array
+  #      items: type integer
+  #      example: '32'
+  Columns:
+    type: object
+    properties:
+      name:
+        type: string
+        example: P1KPL
+      description:
+        type: string
+        example: P1 käyntikerrat
+      unit:
+        type: string
+        example: kpl
+  Location:
+    type: object
+    properties:
+      lat:
+        type: string
+        example: '60.44641'
+      lon:
+        type: string
+        example: '25.10424'
+  Station:
+    type: object
+    properties:
+      id:
+        type: integer
+        example: 120
+      name:
+        type: string
+        example: '059, Ristinummi SVP'
+      #schema:
+      #  type: object
+      #  properties:
+      #    in:
+      #      type: array
+      #      items:
+      #        type: integer
+      #        example: 32
+      #    out:
+      #      type: array
+      #      items:
+      #        type: integer
+      #        example: 56
+      connection:
+        type: string
+        example: '2019-03-07T12:49:32'
+      description:
+        type: string
+        example: Sadevesipumppaamo
+      type:
+        type: string
+        example: SVP
+      location:
+        $ref: '#/definitions/Location'
+      cols:
+        type: array
+        items:
+          $ref: '#/definitions/Columns'
+  History:
+    type: object
+    properties:
+      id:
+        type: integer
+        example: 120
+      name:
+        type: string
+        example: '059, Ristinummi SVP'
+      #schema:
+      #  type: object
+      #  properties:
+      #    in:
+      #      type: array
+      #      items:
+      #        type: integer
+      #        example: 32
+      #    out:
+      #      type: array
+      #      items:
+      #        type: integer
+      #        example: 56
+      connection:
+        type: string
+        example: '2019-03-07T12:49:32'
+      description:
+        type: string
+        example: Sadevesipumppaamo
+      type:
+        type: string
+        example: SVP
+      location:
+        $ref: '#/definitions/Location'
+      cols:
+        type: array
+        items:
+          $ref: '#/definitions/HistoryColumn'
