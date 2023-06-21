@@ -116,6 +116,30 @@ paths:
         '200':
           $ref: '#/components/responses/respHistory'
 
+  '/stations/applications/{application}/history':
+    get:
+      tags:
+        - history
+      description: >
+        Lista ala-asemien perustiedoista sekä historiatiedot ala-asemien kaikista historiasarakkeista puhdas- tai jätevesi rajauksella.
+      parameters:
+        - $ref: '#/components/parameters/paramApplicationPath'
+      responses:
+        '200':
+          $ref: '#/components/responses/respHistory'
+
+  '/stations/applications/{application}/history/{columnName}':
+    get:
+      tags:
+        - history
+      description: >
+        Lista ala-asemien perustiedoista sekä historiatiedot puhdasvesi/jätevesi rajauksella ja historiasarakkeen nimen perusteella.
+      parameters:
+        - $ref: '#/components/parameters/paramApplicationPath'
+        - $ref: '#/components/parameters/paramColumnName'
+      responses:
+        '200':
+          $ref: '#/components/responses/respHistory'
 components:
   securitySchemes:
     basicAuth:
@@ -197,6 +221,17 @@ components:
       description: Rajaa hakua koskemaan joko jätevesi(sewage)- tai puhdasvesi(water)-kohteita
       in: query
       required: false
+      schema:
+        type: string
+        enum:
+          - sewage
+          - water
+        example: water
+    paramApplicationPath:
+      name: application
+      description: Rajaa hakua koskemaan joko jätevesi(sewage)- tai puhdasvesi(water)-kohteita
+      in: path
+      required: true
       schema:
         type: string
         enum:
