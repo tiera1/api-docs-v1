@@ -354,6 +354,10 @@ components:
         type:
           type: string
           example: SVP
+        application:
+          type: string
+          example: sewage
+          enum: [ sewage, water ]
         location:
           $ref: '#/components/schemas/Location'
         cols:
